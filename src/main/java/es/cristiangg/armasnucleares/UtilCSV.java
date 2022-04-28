@@ -8,12 +8,14 @@ import java.io.FileWriter;
 
 
 public class UtilCSV {
-    
+
+// Variables
     String pais = "";
     int armas = 0;
-    int x =0;
     Armas DatosLista = new Armas();
-
+    
+// Leer los datos del fichero
+    
     public void LeerDatos(int nuevoAño){
     String nombreFichero = "country-position-nuclear-weapons.csv";
         // Declarar una variable BufferedReader
@@ -28,27 +30,19 @@ public class UtilCSV {
             // Repetir mientras no se llegue al final del fichero200
             while(texto != null) {
                 String[] valores = texto.split(",");
-//                int armas = Integer.valueOf(valores[3]);
-                armas = Integer.valueOf(valores[3]);
-                pais = valores[0];
-                int año = Integer.valueOf(valores[2]);
-                if( año == nuevoAño){
-                    if (armas > 0){
-//                    System.out.println(String.valueOf(pais) + " : " + String.valueOf(armas));
+                armas = Integer.valueOf(valores[3]); // Sacamos el valor de la posicion 3 que son las armas
+                pais = valores[0]; // Sacamos el valor de la posicion 0 que son los paises
+                int año = Integer.valueOf(valores[2]); // Sacamos el valor de la posicion 2 que son los años
+                if( año == nuevoAño){ // Si año es igual al año que hemos metido entra en el if
+                    if (armas != 0){ // Si armas es distinto a 0 muestra lo siguiente
+                        // muestra la informacion de los Paises y las Armas
+                        System.out.println(String.valueOf(pais) + " : " + String.valueOf(armas));
                         Arma p1 = new Arma(pais, armas);
-                        DatosLista.getListaArma().add(p1);
-//                        System.out.println(DatosLista.getListaArma().get(1).getPais() + ": " + DatosLista.getListaArma().get(1).getArmasNucleares());
+                        DatosLista.getListaArma().add(p1); //Almacenamos el resultado
                     }
                 }
-                    
-//                    textArea.setText(String.valueOf(pais) + " : " + String.valueOf(armas));
-
-//                    Datos.getListaArma().get(nuevoAño).getPais();
-//                    Datos.getListaArma().get(1).getPais();
-//                    Arma almacen = new Arma(pais, String.valueOf(armas));
-                    texto = br.readLine();
+                texto = br.readLine();
             }
-//            System.out.println("Numero de muertes en el año:" + String.valueOf(ArmasNucleares));
         }
         // Captura de excepción por fichero no encontrado
         catch (FileNotFoundException ex) {
@@ -74,9 +68,12 @@ public class UtilCSV {
             }
         }
     }
+    
+// Almacenamos el resultado en un fichero nuevo
+    
     public static void GuardarDatos(){
-        String nombreFichero = "Paises con armas.csv";
-        String texto = BotonPantalla.GuardarDatos;
+        String nombreFichero = "Paises con armas.csv"; // Nombre del nuevo fichero
+        String texto = BotonPantalla.GuardarDatos; // Boton que llamamos para guardar
         BufferedWriter bw = null;
         
         try {
@@ -86,12 +83,12 @@ public class UtilCSV {
         //Escribir en el fichero el texto con un salto de línea
             bw.write(texto + "\n");
         }
-// Comprobar si se ha producido algún error
+        // Comprobar si se ha producido algún error
         catch(Exception ex) {
             System.out.println("Error de escritura del fichero");
             ex.printStackTrace();
         }
-    // Asegurar el cierre del fichero en cualquier caso
+        // Asegurar el cierre del fichero en cualquier caso
         finally {
             try {
                 // Cerrar el fichero si se ha podido abrir

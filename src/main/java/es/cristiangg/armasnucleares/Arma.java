@@ -47,12 +47,4 @@ public class Arma {
     public void setArmasNucleares(int ArmasNucleares) {
         this.ArmasNucleares = ArmasNucleares;
     }
-//    
-//    @Override
-//    public String toString() {
-//        String r = "";
-//        r += "Pais: " + Pais + "\n";
-//        r += "Iniciales: " + Iniciales + "\n";
-//        return r;
-//    }
 }
